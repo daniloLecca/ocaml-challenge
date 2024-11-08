@@ -34,24 +34,3 @@ let f17 f = match (f 0) with 0 -> f | _ -> f;;
 
 let f18 f = fun g -> fun x -> f (g (x + 1) - 1) + 1;;
 
-
-(*
-f1 : int -> bool
-f2 : bool -> int
-f3 : int -> (int * bool)
-f4 : (int * bool) -> int
-f5 : int -> (int -> int)
-f6 : int -> (int -> bool)
-f7 : bool -> (int -> bool)
-f8 : bool -> (bool -> int)
-f9 : bool -> (int -> int)
-f10 : (int -> int) -> int
-f11 : (int -> bool) -> int
-f12 : (bool -> int) -> int
-f13 : (int -> bool) -> bool
-f14 : (bool -> bool) -> int
-f15 : int -> (int * int) -> int
-f16 : int -> (int -> (int -> int))
-f17 : (int -> int) -> (int -> int)
-f18 : ((int -> int) -> int) -> int
-*)
