@@ -1,28 +1,32 @@
 type nat = Z | S of nat;;
 
-let rec count x c = match c with
-| 0 -> x
-| _ -> count (S x) (c - 1);;
+let rec iseven a = match a with
+| Z -> true
+| S Z -> false
+| S (S a) -> iseven a;;
 
-let nat_of_int x = count Z x;;
+let rec halve x = match x with
+| Z -> Z
+| S Z -> Z
+| S (S x) -> S (halve x);;
 
-let rec convNat x c = match c with
-| _ when (x = nat_of_int c) -> c
-| _ -> convNat x (c + 1);;
+let rec add a b = match (a, b) with
+| (_, Z) -> a
+| (_, S b) -> add (S a) (b);;
 
-let int_of_nat x = convNat x 0;;
+let rec mul a b = match (a, b) with
+| (_, Z) -> Z
+| (Z, _) -> Z
+| (S x, _) -> add b (mul x b);;
 
-int_of_nat (nat_of_int 7);;
+let rec equals a b = match (a, b) with
+| (Z, Z) -> true
+| (Z, _) -> false
+| (_ , Z) -> false
+| (S a, S b) -> equals a b;;
 
-
-let iseven x = if ((int_of_nat x) mod 2 = 0) then true else false;;
-
-let halve x = if (iseven x) then nat_of_int ((int_of_nat x) / 2) else nat_of_int (((int_of_nat x) - 1) / 2);;
-
-let add x y = nat_of_int((int_of_nat x) + (int_of_nat y));;
-
-let mul x y = nat_of_int((int_of_nat x) * (int_of_nat y));;
-
-let equals x y = (int_of_nat x) = (int_of_nat y);;
-
-let leq x y = (int_of_nat x) <= (int_of_nat y);;
+let rec leq a b = match (a, b) with
+| (Z, Z) -> true
+| (Z, _) -> true
+| (_ , Z) -> false
+| (S a, S b) -> leq a b;;
